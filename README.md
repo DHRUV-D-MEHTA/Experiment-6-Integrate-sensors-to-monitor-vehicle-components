@@ -27,6 +27,85 @@ o	Output maintenance warnings based on real-time sensor data analysis.
 
 ## PROGRAM
 
+## PROGRAM
+
+```matlab
+clear; clc; close all;
+
+t = linspace(0,10,100);
+
+b = 100 - 2*t + 3*sin(0.5*t);
+m = 40 + 10*sin(t);
+w = 5 + 0.3*t + 2*sin(0.3*t);
+
+bt = 60;
+mt = 70;
+wt = 15;
+
+flag = (b < bt) | (m > mt) | (w > wt);
+
+subplot(3,1,1);
+plot(t,b,'b','LineWidth',2);
+yline(bt,'r--','Battery Threshold');
+title('Battery Health Over Time');
+xlabel('Time (s)');
+ylabel('Battery Health (%)');
+grid on;
+
+subplot(3,1,2);
+plot(t,m,'g','LineWidth',2);
+yline(mt,'r--','Temp Threshold');
+title('Motor Temperature Over Time');
+xlabel('Time (s)');
+ylabel('Temperature (°C)');
+grid on;
+
+subplot(3,1,3);
+plot(t,w,'m','LineWidth',2);
+yline(wt,'r--','Brake Wear Limit');
+title('Brake Wear Over Time');
+xlabel('Time (s)');
+ylabel('Wear (%)');
+grid on;
+
+fprintf('Predictive Maintenance Alert:\n');
+
+if any(flag)
+    disp('Maintenance Needed for Vehicle Components!');
+else
+    disp('All systems are operating within safe limits.');
+end
+```
+
+## OUTPUT
+
+The MATLAB simulation displays three graphs:
+
+1. Battery Health Over Time
+2. Motor Temperature Over Time
+3. Brake Wear Over Time
+
+Each graph also displays the corresponding maintenance threshold.
+
+The Command Window displays:
+
+```text
+Predictive Maintenance Alert:
+All systems are operating within safe limits.
+```
+
+If any monitored parameter crosses its predefined threshold, the program displays:
+
+```text
+Predictive Maintenance Alert:
+Maintenance Needed for Vehicle Components!
+```
+
+## RESULT
+
+The MATLAB simulation successfully predicts maintenance needs in an electric vehicle by monitoring battery health, motor temperature, and brake wear. Threshold-based analysis is used to identify abnormal vehicle-component conditions, while graphical visualization provides a clear representation of component health.
+## OUTPUT
+<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/b82b579c-1702-4705-a9b4-e521bda3f6dc" />
 
 
  
